@@ -12,8 +12,6 @@ hideInToc: true
 
 ---
 
-<div class="absolute top-6 right-8 text-sm opacity-55">01</div>
-
 ## Blockchain-Enabled Efficient Deduplication and Mixed Auditing for Dynamic Cloud Data
 
 <div class="pt-6 text-lg leading-8">
@@ -100,8 +98,6 @@ hideInToc: true
 title: 研究概述
 ---
 
-<div class="absolute top-6 right-8 text-sm opacity-55">02</div>
-
 <h1 class="text-center">研究概述</h1>
 
 <div class="max-w-[90%] mx-auto">
@@ -156,8 +152,6 @@ title: 研究概述
 ---
 title: 研究背景
 ---
-
-<div class="absolute top-6 right-8 text-sm opacity-55">03</div>
 
 <h1 class="text-center">研究背景</h1>
 
@@ -214,8 +208,6 @@ title: 研究背景
 ---
 title: 研究动机
 ---
-
-<div class="absolute top-6 right-8 text-sm opacity-55">04</div>
 
 <h1 class="text-center">研究动机</h1>
 
@@ -286,8 +278,6 @@ hideInToc: true
 title: 相关工作
 ---
 
-<div class="absolute top-6 right-8 text-sm opacity-55">05</div>
-
 <h1 class="text-center">相关工作</h1>
 
 <div class="max-w-[90%] mx-auto">
@@ -352,8 +342,6 @@ title: 相关工作
 ---
 title: 现有工作的不足
 ---
-
-<div class="absolute top-6 right-8 text-sm opacity-55">06</div>
 
 <h1 class="text-center">现有工作的不足</h1>
 
@@ -428,8 +416,6 @@ title: 现有工作的不足
 ---
 title: 本文的核心贡献
 ---
-
-<div class="absolute top-6 right-8 text-sm opacity-55">07</div>
 
 <h1 class="text-center">本文的核心贡献</h1>
 
@@ -754,22 +740,24 @@ title: 系统初始化
 <div class="text-center text-[1rem] font-bold text-blue-300 mb-3">初始化函数：Setup</div>
 <ul class="list-disc pl-5 space-y-2">
 <li>输入安全参数 λ，生成公共参数集合 para</li>
-<li>选择两个阶为 p 的双线性群 G₁ 和 G₂</li>
-<li>构造双线性映射 e: G₁ × G₁ → G₂</li>
-<li>选取生成元 g ∈ G₁ 与随机元素集合 R = {rⱼ}</li>
+<li>选择两个阶为 $p$ 的双线性群 $G_1$ 和 $G_2$</li>
+<li>构造双线性映射 $e: G_1 \times G_1 \rightarrow G_2$</li>
+<li>选取生成元 $g \in G_1$ 与随机元素集合 $R = \{r_j\}$</li>
 </ul>
 </div>
 
 <div class="rounded-2xl border border-green-300/30 bg-green-300/8 px-5 py-5 text-[0.8rem] leading-7">
 <div class="text-center text-[1rem] font-bold text-green-300 mb-3">初始化结果</div>
 <ul class="list-disc pl-5 space-y-2">
-<li>定义哈希函数 H₁、H₂、H₃、H₄</li>
-<li>定义伪随机置换 f₁ 与伪随机函数 f₂</li>
+<li>定义哈希函数 $H_1$、$H_2$、$H_3$、$H_4$</li>
+<li>定义伪随机置换 $f_1$ 与伪随机函数 $f_2$</li>
 <li>这些参数会被上传、审计、更新与交易模块共同调用</li>
 </ul>
 <div class="mt-4 rounded-xl border border-white/12 bg-white/6 px-4 py-3 text-[0.78rem] leading-6">
 <b>公共参数发布结果：</b><br>
-para = {G₁, G₂, p, e, g, R, H₁, H₂, H₃, H₄, f₁, f₂}
+$$
+\mathrm{para} = \{G_1, G_2, p, e, g, R, H_1, H_2, H_3, H_4, f_1, f_2\}
+$$
 </div>
 </div>
 </div>
@@ -841,16 +829,16 @@ title: 上传与去重机制（一）
       <li>用户首先将原始文件 <b>F</b> 划分为 <b>n</b> 个等长数据块</li>
       <li>每个数据块再进一步划分为 <b>s</b> 个 sector，得到更细粒度的数据表示</li>
       <li>如果最后一个 block 长度不足，则在末尾补零，保证后续处理结构一致</li>
-      <li>最终，文件可表示为 <b>F = {mᵢ,ⱼ}</b>，其中 <b>i</b> 表示 block 编号，<b>j</b> 表示 sector 编号</li>
+      <li>最终，文件可表示为 <b>$F = \{m_{i,j}\}$</b>，其中 <b>$i$</b> 表示 block 编号，<b>$j$</b> 表示 sector 编号</li>
     </ul>
   </div>
 
   <div class="rounded-2xl border border-green-300/30 bg-green-300/8 px-5 py-5 text-[0.8rem] leading-7">
     <div class="text-center text-[1rem] font-bold text-green-300 mb-3">步骤 2：公开数据与私密数据分离</div>
     <ul class="list-disc pl-5 space-y-2">
-      <li>文件被进一步划分为两部分：<b>F₁</b> 和 <b>F₂</b></li>
-      <li><b>F₁</b> 表示公开可用的数据块，后续保持明文形式</li>
-      <li><b>F₂</b> 表示包含敏感信息的数据块，后续进入加密流程</li>
+      <li>文件被进一步划分为两部分：<b>$F_1$</b> 和 <b>$F_2$</b></li>
+      <li><b>$F_1$</b> 表示公开可用的数据块，后续保持明文形式</li>
+      <li><b>$F_2$</b> 表示包含敏感信息的数据块，后续进入加密流程</li>
       <li>因此，系统同时保存 <b>plaintext</b> 与 <b>ciphertext</b>，这也是后面 <b>mixed auditing</b> 的基础</li>
     </ul>
   </div>
@@ -861,19 +849,19 @@ title: 上传与去重机制（一）
 
   <div class="rounded-xl border border-yellow-300/30 bg-yellow-300/8 px-4 py-3 text-[0.76rem] leading-6">
     <div class="text-center font-bold text-yellow-300 mb-2">文件级表示</div>
-    <div>F = F₁ ∪ F₂</div>
+    <div>$F = F_1 \cup F_2$</div>
     <div class="mt-2">公开数据与私密数据先分离，再分别处理</div>
   </div>
 
   <div class="rounded-xl border border-cyan-300/30 bg-cyan-300/8 px-4 py-3 text-[0.76rem] leading-6">
     <div class="text-center font-bold text-cyan-300 mb-2">块级表示</div>
-    <div>F = {mᵢ}</div>
+    <div>$F = \{m_i\}$</div>
     <div class="mt-2">每个 mᵢ 对应一个数据块</div>
   </div>
 
   <div class="rounded-xl border border-pink-300/30 bg-pink-300/8 px-4 py-3 text-[0.76rem] leading-6">
     <div class="text-center font-bold text-pink-300 mb-2">sector 级表示</div>
-    <div>F = {mᵢ,ⱼ}</div>
+    <div>$F = \{m_{i,j}\}$</div>
     <div class="mt-2">每个 block 再细分为多个 sector</div>
   </div>
 
