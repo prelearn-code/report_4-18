@@ -736,33 +736,29 @@ title: 系统初始化
 <h1 class="text-center text-[2rem] leading-tight">系统初始化</h1>
 
 <div class="max-w-[90%] mx-auto mt-5 grid grid-cols-2 gap-5">
-<div class="rounded-2xl border border-blue-300/30 bg-blue-300/8 px-5 py-5 text-[0.8rem] leading-7">
+::CardBox
 <div class="text-center text-[1rem] font-bold text-blue-300 mb-3">初始化函数：Setup</div>
-<ul class="list-disc pl-5 space-y-2">
-<li>输入安全参数 λ，生成公共参数集合 para</li>
-<li>选择两个阶为 $p$ 的双线性群 $G_1$ 和 $G_2$</li>
-<li>构造双线性映射 $e: G_1 \times G_1 \rightarrow G_2$</li>
-<li>选取生成元 $g \in G_1$ 与随机元素集合 $R = \{r_j\}$</li>
-</ul>
-</div>
 
-<div class="rounded-2xl border border-green-300/30 bg-green-300/8 px-5 py-5 text-[0.8rem] leading-7">
+- 输入安全参数 `λ`，生成公共参数集合 `para`
+- 选择两个阶为 $p$ 的双线性群 $G_1$ 和 $G_2$
+- 构造双线性映射 $e: G_1 \times G_1 \rightarrow G_2$
+- 选取生成元 $g \in G_1$ 与随机元素集合 $R = \{r_j\}$
+::
+
+::CardBox
 <div class="text-center text-[1rem] font-bold text-green-300 mb-3">初始化结果</div>
-<ul class="list-disc pl-5 space-y-2">
-<li>定义哈希函数 
-<br>
-$H_1$、$H_2$、$H_3$、$H_4$
-</li>
-<li>定义伪随机置换 $f_1$ 与伪随机函数 $f_2$</li>
-<li>这些参数会被上传、审计、更新与交易模块共同调用</li>
-</ul>
+
+- 定义哈希函数 $H_1$、$H_2$、$H_3$、$H_4$
+- 定义伪随机置换 $f_1$ 与伪随机函数 $f_2$
+- 这些参数会被上传、审计、更新与交易模块共同调用
+
 <div class="mt-4 rounded-xl border border-white/12 bg-white/6 px-4 py-3 text-[0.78rem] leading-6">
 <b>公共参数发布结果：</b><br>
 $$
 \mathrm{para} = \{G_1, G_2, p, e, g, R, H_1, H_2, H_3, H_4, f_1, f_2\}
 $$
 </div>
-</div>
+::
 </div>
 
 
@@ -826,47 +822,51 @@ title: 上传与去重机制（一）
 
 <div class="max-w-[90%] mx-auto mt-5 grid grid-cols-2 gap-5">
 
-  <div class="rounded-2xl border border-blue-300/30 bg-blue-300/8 px-5 py-5 text-[0.8rem] leading-7">
-    <div class="text-center text-[1rem] font-bold text-blue-300 mb-3">步骤 1：文件划分与数据组织</div>
-    <ul class="list-disc pl-5 space-y-2">
-      <li>用户首先将原始文件 <b>F</b> 划分为 <b>n</b> 个等长数据块</li>
-      <li>每个数据块再进一步划分为 <b>s</b> 个 sector，得到更细粒度的数据表示</li>
-      <li>如果最后一个 block 长度不足，则在末尾补零，保证后续处理结构一致</li>
-      <li>最终，文件可表示为 <b>$F = \{m_{i,j}\}$</b>，其中 <b>$i$</b> 表示 block 编号，<b>$j$</b> 表示 sector 编号</li>
-    </ul>
-  </div>
+::CardBox
+<div class="text-center text-[1rem] font-bold text-blue-300 mb-3">步骤 1：文件划分与数据组织</div>
 
-  <div class="rounded-2xl border border-green-300/30 bg-green-300/8 px-5 py-5 text-[0.8rem] leading-7">
-    <div class="text-center text-[1rem] font-bold text-green-300 mb-3">步骤 2：公开数据与私密数据分离</div>
-    <ul class="list-disc pl-5 space-y-2">
-      <li>文件被进一步划分为两部分：<b>$F_1$</b> 和 <b>$F_2$</b></li>
-      <li><b>$F_1$</b> 表示公开可用的数据块，后续保持明文形式</li>
-      <li><b>$F_2$</b> 表示包含敏感信息的数据块，后续进入加密流程</li>
-      <li>因此，系统同时保存 <b>plaintext</b> 与 <b>ciphertext</b>，这也是后面 <b>mixed auditing</b> 的基础</li>
-    </ul>
-  </div>
+- 用户首先将原始文件 $F$ 划分为 $n$ 个等长数据块
+- 每个数据块再进一步划分为 $s$ 个 sector，得到更细粒度的数据表示
+- 如果最后一个 block 长度不足，则在末尾补零，保证后续处理结构一致
+- 最终，文件可表示为 $F = \{m_{i,j}\}$，其中 $i$ 表示 block 编号，$j$ 表示 sector 编号
+::
+
+::CardBox
+<div class="text-center text-[1rem] font-bold text-green-300 mb-3">步骤 2：公开数据与私密数据分离</div>
+
+- 文件被进一步划分为两部分：$F_1$ 和 $F_2$
+- $F_1$ 表示公开可用的数据块，后续保持明文形式
+- $F_2$ 表示包含敏感信息的数据块，后续进入加密流程
+- 因此，系统同时保存 `plaintext` 与 `ciphertext`，这也是后面 `mixed auditing` 的基础
+::
 
 </div>
 
 <div class="max-w-[90%] mx-auto mt-5 grid grid-cols-3 gap-4">
 
-  <div class="rounded-xl border border-yellow-300/30 bg-yellow-300/8 px-4 py-3 text-[0.76rem] leading-6">
-    <div class="text-center font-bold text-yellow-300 mb-2">文件级表示</div>
-    <div>$F = F_1 \cup F_2$</div>
-    <div class="mt-2">公开数据与私密数据先分离，再分别处理</div>
-  </div>
+::CardBox
+<div class="text-center font-bold text-yellow-300 mb-2">文件级表示</div>
 
-  <div class="rounded-xl border border-cyan-300/30 bg-cyan-300/8 px-4 py-3 text-[0.76rem] leading-6">
-    <div class="text-center font-bold text-cyan-300 mb-2">块级表示</div>
-    <div>$F = \{m_i\}$</div>
-    <div class="mt-2">每个 mᵢ 对应一个数据块</div>
-  </div>
+行内表示：$F = F_1 \cup F_2$
 
-  <div class="rounded-xl border border-pink-300/30 bg-pink-300/8 px-4 py-3 text-[0.76rem] leading-6">
-    <div class="text-center font-bold text-pink-300 mb-2">sector 级表示</div>
-    <div>$F = \{m_{i,j}\}$</div>
-    <div class="mt-2">每个 block 再细分为多个 sector</div>
-  </div>
+公开数据与私密数据先分离，再分别处理。
+::
+
+::CardBox
+<div class="text-center font-bold text-cyan-300 mb-2">块级表示</div>
+
+行内表示：$F = \{m_i\}$
+
+每个 $m_i$ 对应一个数据块。
+::
+
+::CardBox
+<div class="text-center font-bold text-pink-300 mb-2">sector 级表示</div>
+
+行内表示：$F = \{m_{i,j}\}$
+
+每个 block 再细分为多个 sector。
+::
 
 </div>
 
