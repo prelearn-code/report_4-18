@@ -736,42 +736,63 @@ title: 系统初始化
 <h1 class="text-center text-[2rem] leading-tight">系统初始化</h1>
 
 <div class="max-w-[90%] mx-auto mt-5 grid grid-cols-2 gap-5">
-  <div class="rounded-2xl border border-blue-300/30 bg-blue-300/8 px-5 py-5 text-[0.8rem] leading-7">
-    <div class="text-center text-[1rem] font-bold text-blue-300 mb-4">初始化函数：Setup</div>
-    <ul class="list-disc pl-5 space-y-2">
-      <li>输入安全参数 <code>λ</code>，生成公共参数集合 <code>para</code></li>
-      <li>选择两个阶为 $p$ 的双线性群 $G_1$ 和 $G_2$</li>
-      <li>构造双线性映射 $e: G_1 \times G_1 \rightarrow G_2$</li>
-      <li>选取生成元 $g \in G_1$ 与随机元素集合 $R = \{r_j\}$</li>
-    </ul>
 
-    <div class="mt-4 grid grid-cols-2 gap-3 text-[0.75rem] leading-6">
-      <div class="rounded-xl border border-white/10 bg-white/5 px-3 py-2">
-        <div class="font-bold text-cyan-300 mb-1">群参数</div>
-        行内表示：$G_1, G_2, p, e, g$
-      </div>
-      <div class="rounded-xl border border-white/10 bg-white/5 px-3 py-2">
-        <div class="font-bold text-cyan-300 mb-1">随机元素</div>
-        行内表示：$R = \{r_j\}$
-      </div>
-    </div>
-  </div>
+::CardBox
+<div class="text-center text-[1rem] font-bold text-blue-300 mb-3">初始化函数：Setup</div>
 
-  <div class="rounded-2xl border border-green-300/30 bg-green-300/8 px-5 py-5 text-[0.8rem] leading-7">
-    <div class="text-center text-[1rem] font-bold text-green-300 mb-4">初始化结果</div>
-    <ul class="list-disc pl-5 space-y-2">
-      <li>定义哈希函数 $H_1$、$H_2$、$H_3$、$H_4$</li>
-      <li>定义伪随机置换 $f_1$ 与伪随机函数 $f_2$</li>
-      <li>这些参数会被上传、审计、更新与交易模块共同调用</li>
-    </ul>
+- 输入安全参数 `λ`，生成公共参数集合 `para`
+- 选择两个阶为 $p$ 的双线性群 $G_1$ 和 $G_2$
+- 构造双线性映射 $e: G_1 \times G_1 \rightarrow G_2$
+- 选取生成元 $g \in G_1$ 与随机元素集合 $R = \{r_j\}$
+::
 
-    <div class="mt-4 rounded-xl border border-white/12 bg-white/6 px-4 py-3 text-[0.76rem] leading-6">
-      <div class="font-bold mb-2">公共参数发布结果</div>
-      $$
-      \mathrm{para} = \{G_1, G_2, p, e, g, R, H_1, H_2, H_3, H_4, f_1, f_2\}
-      $$
-    </div>
-  </div>
+::CardBox
+<div class="text-center text-[1rem] font-bold text-green-300 mb-3">初始化结果</div>
+
+- 定义哈希函数 $H_1$、$H_2$、$H_3$、$H_4$
+- 定义伪随机置换 $f_1$ 与伪随机函数 $f_2$
+- 这些参数会被上传、审计、更新与交易模块共同调用
+
+$$
+\mathrm{para} = \{G_1, G_2, p, e, g, R, H_1, H_2, H_3, H_4, f_1, f_2\}
+$$
+::
+</div>
+
+<div class="max-w-[90%] mx-auto mt-4 grid grid-cols-4 gap-3">
+
+::CardBox
+<div class="text-center font-bold text-yellow-300 mb-2">群参数</div>
+
+$$
+G_1, G_2, p, e, g
+$$
+::
+
+::CardBox
+<div class="text-center font-bold text-cyan-300 mb-2">随机元素</div>
+
+$$
+R = \{r_j\}
+$$
+::
+
+::CardBox
+<div class="text-center font-bold text-lime-300 mb-2">哈希函数</div>
+
+$$
+H_1, H_2, H_3, H_4
+$$
+::
+
+::CardBox
+<div class="text-center font-bold text-pink-300 mb-2">伪随机工具</div>
+
+$$
+f_1, f_2
+$$
+::
+
 </div>
 
 
@@ -860,7 +881,7 @@ title: 上传与去重机制（一）
 ::CardBox
 <div class="text-center font-bold text-yellow-300 mb-2">文件级表示</div>
 
-行内表示：$F = F_1 \cup F_2$
+$$F = F_1 \cup F_2$$
 
 公开数据与私密数据先分离，再分别处理。
 ::
@@ -868,7 +889,7 @@ title: 上传与去重机制（一）
 ::CardBox
 <div class="text-center font-bold text-cyan-300 mb-2">块级表示</div>
 
-行内表示：$F = \{m_i\}$
+$$F = \{m_i\}$$
 
 每个 $m_i$ 对应一个数据块。
 ::
@@ -876,7 +897,7 @@ title: 上传与去重机制（一）
 ::CardBox
 <div class="text-center font-bold text-pink-300 mb-2">sector 级表示</div>
 
-行内表示：$F = \{m_{i,j}\}$
+$$F = \{m_{i,j}\}$$
 
 每个 block 再细分为多个 sector。
 ::
@@ -923,21 +944,23 @@ $$
 ::CardBox
 <div class="text-center font-bold text-yellow-300 mb-1">文件密钥</div>
 
-行内表示：$fk = H_1(F)$
+$$fk = H_1(F)$$
 由整个文件生成，用于构造文件级标签。
 ::
 
 ::CardBox
 <div class="text-center font-bold text-cyan-300 mb-1">sector key</div>
 
-行内表示：$k_{i,j} = H_1(m_{i,j})$
+$$k_{i,j} = H_1(m_{i,j})$$
 由每个 sector 单独生成，用于私密数据加密。
 ::
 
 ::CardBox
 <div class="text-center font-bold text-pink-300 mb-1">块标签</div>
 
-行内表示：$tg_i = H_1(c_i)$
+$$
+tg_i = H_1(c_i)
+$$
 后续用于去重检查与认证器构造。
 ::
 
@@ -991,15 +1014,15 @@ $$
 ::CardBox
 <div class="text-center font-bold text-yellow-300 mb-2">唯一块参数</div>
 
-$
+$$
 y_i = \left( \sum_{j=1}^{s} k_{i,j} \right) \oplus \gamma,\\
 \qquad
 \gamma \in \mathbb{Z}_p^{*}
-$
+$$
 
-$
+$$
 Y_i = g^{y_i}
-$
+$$
 ::
 
 ::CardBox
