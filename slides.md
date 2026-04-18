@@ -16,7 +16,7 @@ hideInToc: true
 
 <div class="pt-6 text-lg leading-8">
 
-**Chunfei Pan, Lei Zhou, Anmin Fu, Zhenzhu Chen, Huaqun Wang, Huaqun Wang, Yifeng Zheng, Yansong Gao**
+**Chunfei Pan（南京理工大学硕士）, Lei Zhou（南京理工大学博士）, Anmin Fu（南京理工大学教授 通讯）, Zhenzhu Chen（西南财经讲师）, Huaqun Wang（南京邮电教授）, Yifeng Zheng（港理工助理教授）, Yansong Gao（西澳大利亚大学讲师）**
 
 </div>
 
@@ -749,7 +749,10 @@ title: 系统初始化
 <div class="rounded-2xl border border-green-300/30 bg-green-300/8 px-5 py-5 text-[0.8rem] leading-7">
 <div class="text-center text-[1rem] font-bold text-green-300 mb-3">初始化结果</div>
 <ul class="list-disc pl-5 space-y-2">
-<li>定义哈希函数 $H_1$、$H_2$、$H_3$、$H_4$</li>
+<li>定义哈希函数 
+<br>
+$H_1$、$H_2$、$H_3$、$H_4$
+</li>
 <li>定义伪随机置换 $f_1$ 与伪随机函数 $f_2$</li>
 <li>这些参数会被上传、审计、更新与交易模块共同调用</li>
 </ul>
