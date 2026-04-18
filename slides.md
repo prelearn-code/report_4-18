@@ -736,29 +736,42 @@ title: 系统初始化
 <h1 class="text-center text-[2rem] leading-tight">系统初始化</h1>
 
 <div class="max-w-[90%] mx-auto mt-5 grid grid-cols-2 gap-5">
-::CardBox
-<div class="text-center text-[1rem] font-bold text-blue-300 mb-3">初始化函数：Setup</div>
+  <div class="rounded-2xl border border-blue-300/30 bg-blue-300/8 px-5 py-5 text-[0.8rem] leading-7">
+    <div class="text-center text-[1rem] font-bold text-blue-300 mb-4">初始化函数：Setup</div>
+    <ul class="list-disc pl-5 space-y-2">
+      <li>输入安全参数 <code>λ</code>，生成公共参数集合 <code>para</code></li>
+      <li>选择两个阶为 $p$ 的双线性群 $G_1$ 和 $G_2$</li>
+      <li>构造双线性映射 $e: G_1 \times G_1 \rightarrow G_2$</li>
+      <li>选取生成元 $g \in G_1$ 与随机元素集合 $R = \{r_j\}$</li>
+    </ul>
 
-- 输入安全参数 `λ`，生成公共参数集合 `para`
-- 选择两个阶为 $p$ 的双线性群 $G_1$ 和 $G_2$
-- 构造双线性映射 $e: G_1 \times G_1 \rightarrow G_2$
-- 选取生成元 $g \in G_1$ 与随机元素集合 $R = \{r_j\}$
-::
+    <div class="mt-4 grid grid-cols-2 gap-3 text-[0.75rem] leading-6">
+      <div class="rounded-xl border border-white/10 bg-white/5 px-3 py-2">
+        <div class="font-bold text-cyan-300 mb-1">群参数</div>
+        行内表示：$G_1, G_2, p, e, g$
+      </div>
+      <div class="rounded-xl border border-white/10 bg-white/5 px-3 py-2">
+        <div class="font-bold text-cyan-300 mb-1">随机元素</div>
+        行内表示：$R = \{r_j\}$
+      </div>
+    </div>
+  </div>
 
-::CardBox
-<div class="text-center text-[1rem] font-bold text-green-300 mb-3">初始化结果</div>
+  <div class="rounded-2xl border border-green-300/30 bg-green-300/8 px-5 py-5 text-[0.8rem] leading-7">
+    <div class="text-center text-[1rem] font-bold text-green-300 mb-4">初始化结果</div>
+    <ul class="list-disc pl-5 space-y-2">
+      <li>定义哈希函数 $H_1$、$H_2$、$H_3$、$H_4$</li>
+      <li>定义伪随机置换 $f_1$ 与伪随机函数 $f_2$</li>
+      <li>这些参数会被上传、审计、更新与交易模块共同调用</li>
+    </ul>
 
-- 定义哈希函数 $H_1$、$H_2$、$H_3$、$H_4$
-- 定义伪随机置换 $f_1$ 与伪随机函数 $f_2$
-- 这些参数会被上传、审计、更新与交易模块共同调用
-
-<div class="mt-4 rounded-xl border border-white/12 bg-white/6 px-4 py-3 text-[0.78rem] leading-6">
-<b>公共参数发布结果：</b><br>
-$$
-\mathrm{para} = \{G_1, G_2, p, e, g, R, H_1, H_2, H_3, H_4, f_1, f_2\}
-$$
-</div>
-::
+    <div class="mt-4 rounded-xl border border-white/12 bg-white/6 px-4 py-3 text-[0.76rem] leading-6">
+      <div class="font-bold mb-2">公共参数发布结果</div>
+      $$
+      \mathrm{para} = \{G_1, G_2, p, e, g, R, H_1, H_2, H_3, H_4, f_1, f_2\}
+      $$
+    </div>
+  </div>
 </div>
 
 
