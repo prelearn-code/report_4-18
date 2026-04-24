@@ -149,6 +149,11 @@ title: 研究概述
 </div>
 
 </div>
+
+<!--
+思路2中的内容：就是为了后续统一进行审计，使用同一套审计体系。
+-->
+
 ---
 title: 研究背景
 ---
@@ -167,7 +172,7 @@ title: 研究背景
 <div class="grid grid-cols-2 border-t border-white/12 text-[0.84rem] leading-6">
   <div class="px-5 py-4 border-r border-white/12">
     <span class="text-center font-bold text-blue-300">背景 1：</span>
-    在大数据时代，越来越多用户将本地数据外包到云端，借助 CSP 获得更强的存储能力与可扩展性。
+    在大数据时代，越来越多用户将本地数据外包到云端，借助 CSP(Cloud Service Providers) 获得更强的存储能力与可扩展性。
   </div>
   <div class="px-5 py-4">
     <span class="text-center font-bold text-red-300">问题 1：</span>
@@ -204,6 +209,10 @@ title: 研究背景
 </div>
 
 </div>
+
+<!--
+pag-as-you-go模式就是，存储使用多少的物理空间就支付多少的费用。
+-->
 
 ---
 title: 研究动机
@@ -293,23 +302,18 @@ title: 相关工作
 <div class="grid grid-cols-3 border-t border-white/12 text-[0.8rem] leading-6">
   <div class="px-5 py-4 border-r border-white/12">
     <div class="text-center font-bold text-blue-300 mb-2">Data Integrity Auditing</div>
-    - 关注如何验证云端数据是否仍然完整  
-    - 典型思路是通过随机抽样、认证标签等方式避免下载全部数据  
-    - 一部分工作进一步支持 <b>dynamic data</b> 操作
+   关注如何验证云端数据是否仍然完整； 典型思路是通过随机抽样、认证标签等方式避免下载全部数据；一部分工作进一步支持 <b>dynamic data</b> 操作
   </div>
 
   <div class="px-5 py-4 border-r border-white/12">
     <div class="text-center font-bold text-green-300 mb-2">Blockchain-Based Auditing</div>
-    - 关注如何去掉对 <b>TPA</b> 的依赖  
-    - 主要借助 <b>blockchain</b> 的公开可验证性与不可篡改性  
-    - 通过 <b>smart contract</b> 实现自动审计与结果记录
+    关注如何去掉对 <b>TPA（Third-Party Auditor）</b> 的依赖；主要借助 <b>blockchain</b> 的公开可验证性与不可篡改性  
+    ；通过 <b>smart contract</b> 实现自动审计与结果记录
   </div>
 
   <div class="px-5 py-4">
     <div class="text-center font-bold text-yellow-300 mb-2">Deduplication + Auditing</div>
-    - 关注如何把存储去重与完整性审计结合起来  
-    - 目标是在节省存储空间的同时仍保持可验证性  
-    - 这也是与本文最接近的一类工作
+    关注如何把存储去重与完整性审计结合起来  ；目标是在节省存储空间的同时仍保持可验证性。
   </div>
 </div>
 
@@ -339,6 +343,11 @@ title: 相关工作
 </div>
 
 </div>
+
+<!--
+本文的信任模型是半可信 CSP / 半可信卖方 + 区块链可信
+-->
+
 ---
 title: 现有工作的不足
 ---
@@ -391,17 +400,17 @@ title: 现有工作的不足
 
 <div class="mt-4 grid grid-cols-3 gap-4">
 
-<div class="rounded-xl border border-blue-300/30 bg-blue-300/8 px-4 py-3 text-[0.82rem] leading-6">
+<div class="text-center rounded-xl border border-blue-300/30 bg-blue-300/8 px-4 py-1 text-[0.82rem] leading-6">
 <b>问题一</b><br>
 功能往往分散，缺少统一框架
 </div>
 
-<div class="rounded-xl border border-green-300/30 bg-green-300/8 px-4 py-3 text-[0.82rem] leading-6">
+<div class=" text-center rounded-xl border border-green-300/30 bg-green-300/8 px-4 py-0 text-[0.82rem] leading-6">
 <b>问题二</b><br>
 去掉 TPA 后，链上或交互开销可能上升
 </div>
 
-<div class="rounded-xl border border-yellow-300/30 bg-yellow-300/8 px-4 py-3 text-[0.82rem] leading-6">
+<div class="rounded-xl border border-yellow-300/30 bg-yellow-300/8 px-4 py-1 text-[0.82rem] leading-6">
 <b>问题三</b><br>
 对更新与交易场景支持仍然不足
 </div>
@@ -413,6 +422,11 @@ title: 现有工作的不足
 </div>
 
 </div>
+
+<!--
+但不少方案主要面向单一功能点，往往只能支持 file-level 或 block-level 中的一部分能力，或者缺少对 mixed auditing 的支持。
+-->
+
 ---
 title: 本文的核心贡献
 ---
@@ -426,13 +440,11 @@ title: 本文的核心贡献
 <div class="rounded-2xl border border-blue-300/30 bg-blue-300/8 px-5 py-5 text-[0.82rem] leading-6">
 <div class="text-center text-[1rem] font-bold text-blue-300 mb-3">贡献一</div>
 
-本文设计了一种新的 **HVT** 架构，并将其与 **MLE** 结合起来：
-
+本文设计了一种新的 **HV(Homomorphic Verifiable Tree)** 架构，并将其与 **MLE(Message Locked Encryption)** 结合起来：
 - 支持 **file-level deduplication**
 - 支持 **block-level deduplication**
 - 支持 **mixed plaintext-ciphertext auditing**
-
-同时，方案利用 **ECC** 加密数据密钥，从而降低本地密钥管理负担。
+- 利用 **ECC** 加密数据密钥
 
 </div>
 
@@ -471,6 +483,7 @@ title: 本文的核心贡献
 </div>
 
 </div>
+
 ---
 hideInToc: true
 ---
@@ -555,6 +568,10 @@ title: 系统模型
 </div>
 
 </div>
+
+<!--
+半信任模型
+-->
 
 ---
 title: 设计目标
@@ -825,7 +842,7 @@ title: 核心函数
 </div>
 
 <div class="max-w-[90%] mx-auto mt-5 grid grid-cols-3 gap-4">
-<div class="rounded-xl border border-yellow-300/30 bg-yellow-300/8 px-4 py-3 text-[0.76rem] leading-6">
+<div class="text-center rounded-xl border border-yellow-300/30 bg-yellow-300/8 px-4 py-3 text-[0.76rem] leading-6">
 <div class="text-center font-bold text-yellow-300 mb-2">上传阶段</div>
 KeyGen<br>
 Encrypt<br>
@@ -833,14 +850,14 @@ TagGen<br>
 AuthGen
 </div>
 
-<div class="rounded-xl border border-cyan-300/30 bg-cyan-300/8 px-4 py-3 text-[0.76rem] leading-6">
+<div class="text-center rounded-xl border border-cyan-300/30 bg-cyan-300/8 px-4 py-3 text-[0.76rem] leading-6">
 <div class="text-center font-bold text-cyan-300 mb-2">审计阶段</div>
 AuditReq<br>
 ProofGen<br>
 VerifyProof
 </div>
 
-<div class="rounded-xl border border-pink-300/30 bg-pink-300/8 px-4 py-3 text-[0.76rem] leading-6">
+<div class="text-center rounded-xl border border-pink-300/30 bg-pink-300/8 px-4 py-3 text-[0.76rem] leading-6">
 <div class="text-center font-bold text-pink-300 mb-2">动态维护阶段</div>
 Modify<br>
 Insert<br>
@@ -1089,7 +1106,7 @@ $$
 ::
 
 ::CardBox
-<div class="text-center text-[0.9rem] font-bold text-green-300 mb-2">步骤 8：构造增强型 MHT</div>
+<div class="text-center text-[0.9rem] font-bold text-green-300 mb-2">步骤 8：构造HVT</div>
 
 - 叶子节点保存块标签
 - 内部节点由左右孩子哈希聚合得到
@@ -2563,7 +2580,7 @@ title: 本文总结与展望
 <div class="grid grid-cols-2 gap-3">
 
 ::CardBox
-<div class="text-center text-[0.86rem] font-bold text-blue-300 mb-2">工作总结</div>
+<div class="text-[0.86rem] font-bold text-blue-300 mb-2">工作总结</div>
 
 <div class="text-[0.82rem] leading-6">
 
@@ -2598,7 +2615,7 @@ $$
 <div class="grid grid-cols-2 gap-3 mt-2 px-2">
 
 ::CardBox
-<div class="text-center font-bold text-yellow-300 mb-1 text-[0.82rem]">未来工作</div>
+<div class="font-bold text-yellow-300 mb-1 text-[0.82rem]">未来工作</div>
 
 $$
 \text{Multi-Cloud Environment}
@@ -2610,7 +2627,7 @@ $$
 ::
 
 ::CardBox
-<div class="text-center font-bold text-pink-300 mb-1 text-[0.82rem]">进一步方向</div>
+<div class="font-bold text-pink-300 mb-1 text-[0.82rem]">进一步方向</div>
 
 $$
 \text{Stronger Compatibility}
@@ -2624,3 +2641,5 @@ $$
 </div>
 
 </div>
+
+---
