@@ -1074,6 +1074,10 @@ $$
 
 </div>
 
+<!--
+$\mu$ 比较像用户的私钥参数
+T:标识区块标签集合
+-->
 
 ---
 title: 上传与去重机制（四）
@@ -1163,6 +1167,13 @@ $$
 </div>
 
 </div>
+
+<!--
+三元组，h:标识哈希 l_N:当前节点下面有多少个可访问叶子节点 p:当前节点在本层的编号
+SID:标识存储这个数据的CSP
+
+保证金是CSP发送的两倍保证金，后续验证有问题的话，就会把这个保证金全给用户。
+-->
 
 ---
 hideInToc: true
@@ -1469,6 +1480,10 @@ $$
 
 </div>
 
+<!--
+t:标识文件标签
+-->
+
 ---
 hideInToc: true
 ---
@@ -1634,7 +1649,7 @@ $$
 
 </div>
 
-<div class="grid grid-cols-2 gap-3 mt-2 px-2">
+<div class="grid grid-cols-1 gap-3 mt-2 px-2">
 
 ::CardBox
 <div class="text-center font-bold text-yellow-300 mb-1 text-[0.82rem]">更新结果</div>
@@ -1642,14 +1657,6 @@ $$
 $$
 Insert(Insert,\; t,\; i,\; tg^{*},\; c^{*}) \rightarrow w_r^{*}
 $$
-::
-
-::CardBox
-<div class="text-center font-bold text-pink-300 mb-1 text-[0.82rem]">图示位置</div>
-
-<div class="text-[0.78rem] leading-5 opacity-90">
-此处建议插入论文中增强型 MHT 的更新图，展示插入后叶子节点、内部节点与根节点的变化过程。
-</div>
 ::
 
 </div>
@@ -2641,5 +2648,3 @@ $$
 </div>
 
 </div>
-
----
