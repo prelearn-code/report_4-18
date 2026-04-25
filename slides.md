@@ -1173,6 +1173,7 @@ $$
 SID:标识存储这个数据的CSP
 
 保证金是CSP发送的两倍保证金，后续验证有问题的话，就会把这个保证金全给用户。
+Keyi​=Encrypt(pk,ki,1​∥⋯∥ki,j​)
 -->
 
 ---
@@ -1482,6 +1483,8 @@ $$
 
 <!--
 t:标识文件标签
+
+Keyi​=Encrypt(pk,ki,1​∥⋯∥ki,j​)
 -->
 
 ---
@@ -2012,7 +2015,7 @@ $$
 
 </div>
 
-<div class="grid grid-cols-2 gap-3 mt-2 px-2">
+<div class="grid grid-cols-1 gap-3 mt-2 px-2">
 
 ::CardBox
 <div class="text-center font-bold text-yellow-300 mb-1 text-[0.82rem]">链下实验参数</div>
@@ -2024,25 +2027,13 @@ s = 128
 $$
 ::
 
-::CardBox
-<div class="text-center font-bold text-pink-300 mb-1 text-[0.82rem]">密码与统计设置</div>
-
-$$
-|G| = 512\ \text{bits}
-;
-
-;
-|Z_p^{*}| = 160\ \text{bits}
-;
-
-
-1000\ \text{runs}
-$$
-::
-
 </div>
 
 </div>
+
+<!--
+D:数据重复程度
+-->
 
 ---
 title: 实验评估（二）
@@ -2128,7 +2119,7 @@ title: 实验评估（三）
 
 <h1 class="text-center text-[1.4rem] leading-tight">实验评估（三）：加密、解密与动态更新开销对比</h1>
 
-<div class="max-w-[90%] mx-auto mt-2">
+<div class="max-w-[100%] mx-auto mt-2">
 
 <div class="grid grid-cols-2 gap-3">
 
@@ -2146,7 +2137,7 @@ title: 实验评估（三）
 <div class="mt-2 flex justify-center">
   <img
     src="/images/encrypt_decrypt_update.png"
-    class="w-[92%] max-h-[44vh] object-contain rounded-lg bg-white p-1"
+    class="w-[100%] max-h-[170vh] object-contain rounded-lg bg-white p-1"
   />
 </div>
 ::
@@ -2164,9 +2155,6 @@ title: 实验评估（三）
 </div>
 
 $$
-\omega = \frac{n-\zeta}{n};
-\omega \downarrow \;\Rightarrow\; \text{Encrypt/Decrypt Cost} \downarrow
-;\\
 1000\ \text{blocks update} \approx 2.78\,s
 $$
 ::
@@ -2194,6 +2182,10 @@ $$
 </div>
 
 </div>
+
+<!--
+[35] G. Tian et al., “Blockchain-based secure deduplication and shared auditing in decentralized storage,” IEEE Trans. Dependable Secure Comput., vol. 19, no. 6, pp. 3941–3954, Nov./Dec. 2022
+-->
 
 ---
 title: 实验评估（四）
@@ -2637,11 +2629,11 @@ $$
 <div class="font-bold text-pink-300 mb-1 text-[0.82rem]">进一步方向</div>
 
 $$
-\text{Stronger Compatibility}
+Iot相似去重
 $$
 
 $$
-\text{Resistance to Quantum Attacks}
+相似去重体系下的审计
 $$
 ::
 
